@@ -322,9 +322,10 @@ class TCPRelayHandler(object):
             if header_result is None:
                 raise Exception('can not parse header')
             addrtype, remote_addr, remote_port, header_length = header_result
-            logging.info('connecting %s:%d from %s:%d' %
+            logging.info('connecting %s:%d from %s:%d ssport:%d' %
                          (common.to_str(remote_addr), remote_port,
-                          self._client_address[0], self._client_address[1]))
+                          self._client_address[0], self._client_address[1],
+                          self._config['server_port']))
             if self._is_local is False:
                 # spec https://shadowsocks.org/en/spec/one-time-auth.html
                 if self._ota_enable or addrtype & ADDRTYPE_AUTH:
